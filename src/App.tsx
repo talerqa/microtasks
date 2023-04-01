@@ -1,24 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Button} from './site/Button';
 
 function App() {
+  const ButtonFoo1 = (subscriber: string, age: number) => {
+    console.log(subscriber, age)
+  }
+  const ButtonFoo2 = (subscriber: string, age: number) => {
+    console.log(subscriber, age)
+  }
+  const ButtonFoo3 = (subscriber: string) => {
+    console.log(subscriber)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Button name={'YoutubeChanel-1'} callback={() => ButtonFoo1('I m Vasya', 21)}/>
+      <Button name={'YoutubeChanel-2'} callback={() => ButtonFoo2('I m NOT Vasya', 23)}/>
+      <Button name={'Stupid btn'} callback={()=>ButtonFoo3('Stupid BTN')}/>
     </div>
   );
 }
