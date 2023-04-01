@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Button} from './site/Button';
 
@@ -8,9 +8,19 @@ function App() {
     console.log(name)
   }
 
+//  let a = 1;
+
+  let[a,PlusCounter] = useState(1)
+
+  const Counter = () => {
+    PlusCounter(++a);
+    console.log(a)
+  }
+
   return (
     <div className="App">
-    <Button name={'FirstButton'} callback={()=>Foo('Lesha')}/>
+      <div>{a}</div>
+      <Button name={'FirstButton'} callback={Counter}/>
     </div>
   );
 }
