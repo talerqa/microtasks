@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 type CityPropsType = {
     data: MoneyType[] //встречаем денюжки
+    deleteMoney: (id: number) => void
 }
 
 export const City = (props: CityPropsType) => {
@@ -13,6 +14,7 @@ export const City = (props: CityPropsType) => {
         <CurrentBankomat
             key={index}
             money={el}
+            deleteMoney={props.deleteMoney}
         />
     ))
 

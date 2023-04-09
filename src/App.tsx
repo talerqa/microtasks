@@ -4,20 +4,21 @@ import {Country} from './Country';
 
 export type BanknotsType = 'Dollars' | 'RUBLS' | 'All'// создадим типы для banknotes -он может быть 'Dollars', 'RUBLS' или 'All'
 export type MoneyType = {
+    id: number
     banknotes: BanknotsType
     value: number// не ленимся, убираем заглушку, и пишем правильный тип)
     number: string// ложку за Димыча, за...
 }
 
 let defaultMoney: Array<MoneyType> = [  // типизируем
-    {banknotes: 'Dollars', value: 100, number: ' a1234567890'},
-    {banknotes: 'Dollars', value: 50, number: ' z1234567890'},
-    {banknotes: 'RUBLS', value: 100, number: ' w1234567890'},
-    {banknotes: 'Dollars', value: 100, number: ' e1234567890'},
-    {banknotes: 'Dollars', value: 50, number: ' c1234567890'},
-    {banknotes: 'RUBLS', value: 100, number: ' r1234567890'},
-    {banknotes: 'Dollars', value: 50, number: ' x1234567890'},
-    {banknotes: 'RUBLS', value: 50, number: ' v1234567890'},
+    {id: 1, banknotes: 'Dollars', value: 100, number: ' a1234567890'},
+    {id: 2, banknotes: 'Dollars', value: 50, number: ' z1234567890'},
+    {id: 3, banknotes: 'RUBLS', value: 100, number: ' w1234567890'},
+    {id: 4, banknotes: 'Dollars', value: 100, number: ' e1234567890'},
+    {id: 5, banknotes: 'Dollars', value: 50, number: ' c1234567890'},
+    {id: 6, banknotes: 'RUBLS', value: 100, number: ' r1234567890'},
+    {id: 7, banknotes: 'Dollars', value: 50, number: ' x1234567890'},
+    {id: 8, banknotes: 'RUBLS', value: 50, number: ' v1234567890'},
 ]
 
 // типизируем на входе и выходе
@@ -36,13 +37,19 @@ function App() {
 
     // а вот сейчас притормаживаем. И вдумчиво: константа filteredMoney получает результат функции moneyFilter
     // в функцию передаем деньги и фильтр, по которому ихбудем выдавать(ретёрнуть)
+
+    const deleteMoney = (id: number): void => {
+        setMoney(money.filter(f => f.id !== id))
+    }
+
     const filteredMoney = moneyFilter(money, filterValue)
     return (
       <div className="App">
           <Country
             data={filteredMoney}   //отрисовать будем деньги после фильтрации
-            setFilterValue={setFilterValue}  //useState передаем? Так можно было?!
-
+            setFilterValue={setFilterValue}  //useState передаем? Так можно
+            // было?!
+            deleteMoney={deleteMoney}
           />
       </div>
     );

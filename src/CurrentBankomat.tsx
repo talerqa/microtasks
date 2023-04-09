@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 type CurrentBankomatPropsType = {
   money: MoneyType
+  deleteMoney: (id: number) => void
 }
 
 
@@ -19,6 +20,10 @@ export const CurrentBankomat = (props: CurrentBankomatPropsType) => {
       <BanknoteValue>
         {props.money.value}
       </BanknoteValue>
+      <button onClick={() => {
+        props.deleteMoney(props.money.id)
+      }}>X
+      </button>
     </Banknote>
   )
     ;
