@@ -5,15 +5,17 @@ export const FullInput = (props: any) => {
 
   const onChangeInputHandler = (event: ChangeEvent<HTMLInputElement>)  =>  {
     setTitle(event.currentTarget.value)
-   // console.log(event.target.value)
   }
 
 
 
   return (
     <div>
-      <input onChange={onChangeInputHandler}/>
-      <button onClick={()=> {props.addNewMessage(title)}}>+
+      <input value={title} onChange={onChangeInputHandler}/>
+      <button onClick={()=> {
+        props.addNewMessage(title)
+        setTitle('')
+      }}>+
       </button>
     </div>
   );

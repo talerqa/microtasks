@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
-import {FullInput} from './Conponents/Full_Input';
+import Input from './Conponents/Input';
+import Button from './Conponents/Button';
 
 function App() {
   const [message, setMessage] = useState([
@@ -10,22 +11,27 @@ function App() {
     {message: 'mes4'},
   ])
 
-  const newMessage = {
-    message: 'mes0'
-  }
+  let [title, setTitle] = useState('');
 
   const addNewMessage = (title: string) => {
     const newMessage = {
       message: title
     }
+    setTitle('')
     return setMessage([newMessage, ...message])
+  }
+
+  const callBackonClickButtonHandler = ()=> {
+    addNewMessage(title)
   }
 
   return (
     <div className="App">
 
       <div>
-        <FullInput state={message} addNewMessage={addNewMessage}/>
+        {/*<FullInput state={message} addNewMessage={addNewMessage}/>*/}
+        <Input setTitle={setTitle} title={title} />
+        <Button name={'+'} callBack={callBackonClickButtonHandler}/>
       </div>
       {message.map(e => <div>{e.message}</div>)}
     </div>
