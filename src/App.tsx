@@ -53,6 +53,13 @@ function App() {
         setTasks(filteredTasks);
     }
 
+    function deleteTask(todoListId: string) {
+        setTodolists(todolists.filter( f => f.id !== todoListId))
+        delete tasks[todoListId]
+        console.log(tasks)
+    }
+
+
     function addTask(todoListId: string, title: string) {
         let task = {id: v1(), title: title, isDone: false};
         setTasks({...tasks, [todoListId]: [...tasks[todoListId], task]})
@@ -76,10 +83,10 @@ function App() {
               let tasksForTodolist = tasks[el.id]
 
               if (el.filter === 'active') {
-                  tasksForTodolist = tasks[el.id].filter(f => f.isDone === false);
+                  tasksForTodolist = tasks[el.id].filter(f => !f.isDone);
               }
               if (el.filter === 'completed') {
-                  tasksForTodolist = tasks[el.id].filter(f => f.isDone === true);
+                  tasksForTodolist = tasks[el.id].filter(f => f.isDone);
               }
 
 
@@ -91,6 +98,7 @@ function App() {
                                changeTaskStatus={changeStatus}
                                filter={el.filter}
                                todolistsId={el.id}
+                               deleteTask={deleteTask}
               />
           })}
 
