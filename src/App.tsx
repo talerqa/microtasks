@@ -45,8 +45,6 @@ function App() {
         ]
     });
 
-    console.log(tasks[todolists[0].id])
-
     function removeTask(todoListId: string, id: string) {
         let filteredTasks = {
             ...tasks, [todoListId]: tasks[todoListId].filter(f => f.id != id)
@@ -55,10 +53,9 @@ function App() {
         setTasks(filteredTasks);
     }
 
-    function addTask(title: string) {
-        // let task = {id: v1(), title: title, isDone: false};
-        // let newTasks = [task, ...tasks];
-        // setTasks(newTasks);
+    function addTask(todoListId: string, title: string) {
+        let task = {id: v1(), title: title, isDone: false};
+        setTasks({...tasks, [todoListId]: [...tasks[todoListId], task]})
     }
 
     function changeStatus(taskId: string, isDone: boolean) {
